@@ -1,0 +1,37 @@
+#include "robot-config.h"
+          
+
+int main() {
+    int carSpeedPCT = 50;
+   Controller.Screen.print (Brain.Battery.temperature();Brain.Battery.capacity());
+    while(1) {         
+        if(Brain.Screen.pressing())
+        {
+            Brain.Screen.clearScreen();
+            Controller.Screen.clearScreen();        
+            Brain.Screen.print(Brain.Battery.temperature();Brain.Battery.capacity());}
+    }
+    if (Controller.ButtonUp.pressed(pressedFunction))
+    { 
+    RMotor.spin(directionType::fwd,carSpeedPCT,velocityUnits::rpm);
+    LMotor.spin(directionType::fwd,carSpeedPCT,velocityUnits::rpm);
+    }
+    
+   if (Controller.ButtonUp.pressed(pressedFunction))
+   {
+    RMotor.spin(directionType::rev,carSpeedPCT,velocityUnits::rpm);
+    LMotor.spin(directionType::rev,carSpeedPCT,velocityUnits::rpm);
+   }
+    if (Controller.ButtonLeft.pressed(pressedFunction))
+    {
+    RMotor.spin(directionType::fwd,16,velocityUnits::rpm);
+    LMotor.spin(directionType::rev,16,velocityUnits::rpm);
+    } 
+    if (Controller.Axis1.changed(changedFunction);)
+    {
+    RMotor.spin(directionType::fwd,32,velocityUnits::rpm);
+    LMotor.spin(directionType::rev,32,velocityUnits::rpm);
+    }  
+ vex::task::sleep(20)
+    
+}
