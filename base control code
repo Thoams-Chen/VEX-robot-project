@@ -27,11 +27,10 @@ int main() {
     RMotor.spin(directionType::fwd,16,velocityUnits::rpm);
     LMotor.spin(directionType::rev,16,velocityUnits::rpm);
     } 
-    if (Controller.Axis1.changed(changedFunction);)
-    {
-    RMotor.spin(directionType::fwd,32,velocityUnits::rpm);
-    LMotor.spin(directionType::rev,32,velocityUnits::rpm);
-    }  
+    if（ Controller.ButtonRight.pressed(pressedFunction)）
+   { RMotor.spin(directionType::rev,16,velocityUnits::rpm);
+    LMotor.spin(directionType::fwd,16,velocityUnits::rpm);
+   }
  vex::task::sleep(20)
     
 }
