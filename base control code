@@ -5,11 +5,10 @@ int main() {
     int carSpeedPCT = 50;
    Controller.Screen.print (Brain.Battery.temperature();Brain.Battery.capacity());
     while(1) {         
-        if(Brain.Screen.pressing())
-        {
-            Brain.Screen.clearScreen();
-            Controller.Screen.clearScreen();        
-            Brain.Screen.print(Brain.Battery.temperature();Brain.Battery.capacity());}
+     if(Brain.Screen.pressing())
+   {
+    Brain.Screen.clearScreen();    
+    Brain.Screen.print(Brain.Battery.temperature();Brain.Battery.capacity());}
     }
     if (Controller.ButtonUp.pressed(pressedFunction))
     { 
