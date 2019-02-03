@@ -10,23 +10,23 @@ int main() {
     Brain.Screen.clearScreen();    
     Brain.Screen.print(Brain.Battery.temperature();Brain.Battery.capacity());}
     }
-    if (Controller.ButtonUp.pressed(pressedFunction))
+    if (Controller.ButtonUp.pressing())
     { 
     RMotor.spin(directionType::fwd,carSpeedPCT,velocityUnits::rpm);
     LMotor.spin(directionType::fwd,carSpeedPCT,velocityUnits::rpm);
     }
     
-   if (Controller.ButtonUp.pressed(pressedFunction))
+   if (Controller.ButtonUp.pressing())
    {
     RMotor.spin(directionType::rev,carSpeedPCT,velocityUnits::rpm);
     LMotor.spin(directionType::rev,carSpeedPCT,velocityUnits::rpm);
    }
-    if (Controller.ButtonLeft.pressed(pressedFunction))
+    if (Controller.ButtonLeft.pressing())
     {
     RMotor.spin(directionType::fwd,16,velocityUnits::rpm);
     LMotor.spin(directionType::rev,16,velocityUnits::rpm);
     } 
-    if（ Controller.ButtonRight.pressed(pressedFunction)）
+    if（ Controller.ButtonRight.pressing()）
    { RMotor.spin(directionType::rev,16,velocityUnits::rpm);
     LMotor.spin(directionType::fwd,16,velocityUnits::rpm);
    }
