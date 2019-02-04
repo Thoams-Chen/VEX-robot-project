@@ -5,46 +5,43 @@ int main() {
     int carSpeedPCTfb= Controller1.Axis2.position(percentUnits::pct);
     int carSpeedPCTlr= Controller1.Axis4.position(percentUnits::pct);
     
-   Controller.Screen.print (Brain.Battery.temperature();Brain.Battery.capacity());
-    while(Brain pressing) {         
+    while(Brain.Screen.pressing()) {         
     Brain.Screen.clearScreen();    
-    Brain.Screen.print(Brain.Battery.temperature();Brain.Battery.capacity());}
+    Brain.Screen.print(Brain.Battery.temperature());
+    Brain.Screen.print(Brain.Battery.capacity());
     }
+    
     while(Brain.Battery.capacity()<20)
     {
-    brain screen.print("low battery");
-     controller1.screen.print("low battery");
+        Brain.Screen.print("low low-battery");
      }
     
-    if (Controller.ButtonUp.pressing())
+    if (Controller1.Axis2.value()>0)
     { 
-    RMotor.spin(directionType::fwd,carSpeedPCTfb,velocityUnits::pct);
-    LMotor.spin(directionType::fwd,carSpeedPCTfb,velocityUnits::pct);
+    RMotor.spin(directionType::fwd,carSpeedPCTfb,percentUnits::pct);
+    LMotor.spin(directionType::fwd,carSpeedPCTfb,percentUnits::pct);
     }
     
-   if (Controller.ButtonUp.pressing())
+   if (Controller1.Axis2.value()<0)
    {
-    RMotor.spin(directionType::rev,carSpeedPCTfb,velocityUnits::pct);
-    LMotor.spin(directionType::rev,carSpeedPCTfb,velocityUnits::pct);
+    RMotor.spin(directionType::rev,carSpeedPCTfb,percentUnits::pct);
+    LMotor.spin(directionType::rev,carSpeedPCTfb,percentUnits::pct);
    }
-    if (Controller.ButtonLeft.pressing())
+    if( Controller1.Axis4.value()<0)
     {
-    RMotor.spin(directionType::fwd,carSpeedPCTlr,velocityUnits::pct);
-    LMotor.spin(directionType::rev,carSpeedPCTlr,velocityUnits::pct);
+    RMotor.spin(directionType::fwd,carSpeedPCTlr,percentUnits::pct);
+    LMotor.spin(directionType::rev,carSpeedPCTlr,percentUnits::pct);
     } 
-    if（ Controller.ButtonRight.pressing()）
+    if( Controller1.Axis2.value()>0)
     
-   { RMotor.spin(directionType::rev,carSpeedPCTlr,velocityUnits::pct);
-     LMotor.spin(directionType::fwd,carSpeedPCTlr,velocityUnits::pct);
+   { RMotor.spin(directionType::rev,carSpeedPCTlr,percentUnits::pct);
+     LMotor.spin(directionType::fwd,carSpeedPCTlr,percentUnits::pct);
    }
-    if（ Controller.Buttonleft.pressing()）
-    
-   { RMotor.spin(directionType::FWD,carSpeedPCTlr,velocityUnits::pct);
-     LMotor.spin(directionType::REV,carSpeedPCTlr,velocityUnits::pct);
-   }
+   
    else
    { LMotor.stop();
-     RMotor.stop();}
- vex::task::sleep(20)
+     RMotor.stop();
+     }
+ vex::task::sleep(20);
     
 }
