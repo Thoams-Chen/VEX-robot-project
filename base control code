@@ -1,35 +1,50 @@
 #include "robot-config.h"
           
-
 int main() {
-    int carSpeedPCT = 50;
+
+    int carSpeedPCTfb= Controller1.Axis2.position(percentUnits::pct);
+    int carSpeedPCTlr= Controller1.Axis4.position(percentUnits::pct);
+    
    Controller.Screen.print (Brain.Battery.temperature();Brain.Battery.capacity());
-    while(1) {         
-     if(Brain.Screen.pressing())
-   {
+    while(Brain pressing) {         
     Brain.Screen.clearScreen();    
     Brain.Screen.print(Brain.Battery.temperature();Brain.Battery.capacity());}
     }
+    while(Brain.Battery.capacity()<20)
+    {
+    brain screen.print("low battery");
+     controller1.screen.print("low battery");
+     }
+    
     if (Controller.ButtonUp.pressing())
     { 
-    RMotor.spin(directionType::fwd,carSpeedPCT,velocityUnits::rpm);
-    LMotor.spin(directionType::fwd,carSpeedPCT,velocityUnits::rpm);
+    RMotor.spin(directionType::fwd,carSpeedPCTfb,velocityUnits::pct);
+    LMotor.spin(directionType::fwd,carSpeedPCTfb,velocityUnits::pct);
     }
     
    if (Controller.ButtonUp.pressing())
    {
-    RMotor.spin(directionType::rev,carSpeedPCT,velocityUnits::rpm);
-    LMotor.spin(directionType::rev,carSpeedPCT,velocityUnits::rpm);
+    RMotor.spin(directionType::rev,carSpeedPCTfb,velocityUnits::pct);
+    LMotor.spin(directionType::rev,carSpeedPCTfb,velocityUnits::pct);
    }
     if (Controller.ButtonLeft.pressing())
     {
-    RMotor.spin(directionType::fwd,16,velocityUnits::rpm);
-    LMotor.spin(directionType::rev,16,velocityUnits::rpm);
+    RMotor.spin(directionType::fwd,carSpeedPCTlr,velocityUnits::pct);
+    LMotor.spin(directionType::rev,carSpeedPCTlr,velocityUnits::pct);
     } 
     if（ Controller.ButtonRight.pressing()）
-   { RMotor.spin(directionType::rev,16,velocityUnits::rpm);
-    LMotor.spin(directionType::fwd,16,velocityUnits::rpm);
+    
+   { RMotor.spin(directionType::rev,carSpeedPCTlr,velocityUnits::pct);
+     LMotor.spin(directionType::fwd,carSpeedPCTlr,velocityUnits::pct);
    }
+    if（ Controller.Buttonleft.pressing()）
+    
+   { RMotor.spin(directionType::FWD,carSpeedPCTlr,velocityUnits::pct);
+     LMotor.spin(directionType::REV,carSpeedPCTlr,velocityUnits::pct);
+   }
+   else
+   { LMotor.stop();
+     RMotor.stop();}
  vex::task::sleep(20)
     
 }
