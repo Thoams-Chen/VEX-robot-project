@@ -1,0 +1,21 @@
+#include "robot-config.h"
+          
+
+
+
+  
+int main() { 
+    int axisHor =  Controller1.Axis3.position(percentUnits::pct);
+    int axisVert = (1-Controller1.Axis3.position(percentUnits::pct));
+    int Rspeech = (axisHor-axisVert);//the horizontal value not sure which side is negative.
+    int Lspeech = (axisHor+axisVert);
+        if (Controller1.Axis4.changing() or Controller1.Axis4.changing())//when we turn the direction or go fb
+        { RMotor.rotateFor(2.5,timeUnits::sec,Rspeech,velocityUnits::pct);
+          LMotor.rotateFor(2.5,timeUnits::sec,Lspeech,velocityUnits::pct);
+        }
+         else
+         {
+             RMotor.stop();
+             LMotor.stop();
+         }
+}
