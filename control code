@@ -1,6 +1,6 @@
 #include "robot-config.h"
  int axisHor =  Controller1.Axis3.position(percentUnits::pct);
- int axisVert = (1-Controller1.Axis3.position(percentUnits::pct));
+ int axisVert = Controller1.Axis3.position(percentUnits::pct);
  int Rspeech = (axisHor-axisVert);//the horizontal value not sure which side is negative.
   int Lspeech = (axisHor+axisVert);          
 
