@@ -1,25 +1,20 @@
 #include "robot-config.h"
- int axisHor =  Controller1.Axis3.position(percentUnits::pct);
- int axisVert = Controller1.Axis4.position(percentUnits::pct);
- int Rspeech = (axisHor-axisVert);//the horizontal value not sure which side is negative.
- int Lspeech = (axisHor+axisVert);          
+#include "math.h"
 
-void ruing()
- {
-RMotor.setMaxTorque(100,percentUnits::pct);
-LMotor.setMaxTorque(100,percentUnits::pct);
- RMotor.rotateFor(2.5,timeUnits::sec,Rspeech,velocityUnits::pct);
- LMotor.rotateFor(2.5,timeUnits::sec,Lspeech,velocityUnits::pct);
-        }
+ int axisHor = Controller1.Axis3.value();
+ int axisVert = Controller1.Axis4.value();
+ int Rspeech = (axisHor+axisVert);//the horizontal value not sure which side is negative.
+ int Lspeech = (axisHor-axisVert);          
+ 
 
 int main() { 
-   
-       Controller1.Axis3.changed(ruing);
-       Controller1.Axis4.changed(ruing);
-           
-    if(Controller1.Axis4.value()==0 and Controller1.Axis3.value()==0)
-         {
-             RMotor.stop();
-             LMotor.stop();
-         }
-}
+    if(Rspeech<100 and Lspeech<100)
+    {
+  LMotor.spin(vex::directionType::fwd,Rspeech, vex::velocityUnits::pct); 
+  RMotor.spin(vex::directionType::fwd,Lspeech, vex::velocityUnits::pct);
+    }
+   if(Rspeech>100 and Lspeech>100)
+   {
+  LMotor.spin(vex::directionType::fwd,Rspeech/2, vex::velocityUnits::pct); 
+  RMotor.spin(vex::directionType::fwd,Lspeech/2, vex::velocityUnits::pct);
+   }
