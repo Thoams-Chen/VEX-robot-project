@@ -3,11 +3,11 @@
  int axisVert = Controller1.Axis4.position(percentUnits::pct);
  int Rspeech = (axisHor-axisVert);//the horizontal value not sure which side is negative.
  int Lspeech = (axisHor+axisVert);          
-RMotor.setMaxTorque(100,percentUnits::pct);
-LMotor.setMaxTorque(100,percentUnits::pct);
+
 void ruing()
  {
-
+RMotor.setMaxTorque(100,percentUnits::pct);
+LMotor.setMaxTorque(100,percentUnits::pct);
  RMotor.rotateFor(2.5,timeUnits::sec,Rspeech,velocityUnits::pct);
  LMotor.rotateFor(2.5,timeUnits::sec,Lspeech,velocityUnits::pct);
         }
