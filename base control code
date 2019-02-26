@@ -1,47 +1,27 @@
-#include "robot-config.h"
-          
-int main() {
-
-    int carSpeedPCTfb= Controller1.Axis2.position(percentUnits::pct);
-    int carSpeedPCTlr= Controller1.Axis4.position(percentUnits::pct);
-    
-    while(Brain.Screen.pressing()) {         
-    Brain.Screen.clearScreen();    
-    Brain.Screen.print(Brain.Battery.temperature());
-    Brain.Screen.print(Brain.Battery.capacity());
+when(STARTED){
+  Controller1.Screen.print("eventually robot will control the world");
+  while((Controller1.ButtonUp.pressing() or (Controller1.ButtonDown.pressing() or (Controller1.ButtonLeft.pressing() or Controller1.ButtonRight.pressing())))){
+    LMotor.setVelocity(100,percent);
+    LMotor.setVelocity(100,percent);
+    if(Controller1.ButtonUp.pressing()){
+      RMotor.spin(forward);
+      LMotor.spin(forward);
+      if(Controller1.ButtonDown.pressing()){
+        LMotor.spin(reverse);
+        RMotor.spin(reverse);
+      }
+      if(Controller1.ButtonLeft.pressing()){
+        LMotor.spin(forward);
+        LMotor.spin(reverse);
+      }
+      if(Controller1.ButtonRight.pressing()){
+        LMotor.spin(forward);
+        LMotor.spin(forward);
+      }
     }
-    
-    while(Brain.Battery.capacity()<20)
-    {
-        Brain.Screen.print("low low-battery");
-     }
-    
-    if (Controller1.Axis2.value()>0)
-    { 
-    RMotor.spin(directionType::fwd,carSpeedPCTfb,percentUnits::pct);
-    LMotor.spin(directionType::fwd,carSpeedPCTfb,percentUnits::pct);
-    }
-    
-   if (Controller1.Axis2.value()<0)
-   {
-    RMotor.spin(directionType::rev,carSpeedPCTfb,percentUnits::pct);
-    LMotor.spin(directionType::rev,carSpeedPCTfb,percentUnits::pct);
-   }
-    if( Controller1.Axis4.value()<0)
-    {
-    RMotor.spin(directionType::fwd,carSpeedPCTlr,percentUnits::pct);
-    LMotor.spin(directionType::rev,carSpeedPCTlr,percentUnits::pct);
-    } 
-    if( Controller1.Axis2.value()>0)
-    
-   { RMotor.spin(directionType::rev,carSpeedPCTlr,percentUnits::pct);
-     LMotor.spin(directionType::fwd,carSpeedPCTlr,percentUnits::pct);
-   }
-   
-   else
-   { LMotor.stop();
-     RMotor.stop();
-     }
- vex::task::sleep(20);
-    
+  }
+  LMotor.setVelocity(((0.7*Controller1.Axis3.position(percent))+(0.3*Controller1.Axis1.position(percent))),percent);
+  RMotor.setVelocity(((0.7*Controller1.Axis3.position(percent))-(0.3*Controller1.Axis4.position(percent))),percent);
+  RMotor.spin(forward);
+  LMotor.spin(forward);
 }

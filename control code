@@ -1,0 +1,29 @@
+when(STARTED){
+  while(true){
+    Controller1.Screen.print("eventually robot will control the world");
+    while((Controller1.ButtonUp.pressing() or (Controller1.ButtonDown.pressing() or (Controller1.ButtonLeft.pressing() or Controller1.ButtonRight.pressing())))){
+      LMotor.setVelocity(100,percent);
+      RMotor.setVelocity(100,percent);
+      if(Controller1.ButtonUp.pressing()){
+        RMotor.spin(forward);
+        LMotor.spin(forward);
+      }
+      if(Controller1.ButtonDown.pressing()){
+        LMotor.spin(reverse);
+        RMotor.spin(reverse);
+      }
+      if(Controller1.ButtonLeft.pressing()){
+        RMotor.spin(forward);
+        LMotor.spin(reverse);
+      }
+      if(Controller1.ButtonRight.pressing()){
+        RMotor.spin(reverse);
+        LMotor.spin(forward);
+      }
+    }
+    LMotor.setVelocity(((0.65*Controller1.Axis3.position(percent))+(0.35*Controller1.Axis1.position(percent))),percent);
+    RMotor.setVelocity(((0.65*Controller1.Axis3.position(percent))-(0.35*Controller1.Axis4.position(percent))),percent);
+    RMotor.spin(forward);
+    LMotor.spin(forward);
+  }
+}
